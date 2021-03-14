@@ -21,5 +21,6 @@ namespace sdc
         double m_p;
         double m_i;
         double m_d;
+        double m_prevCte;
     };
 }
