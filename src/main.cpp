@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include "json.hpp"
-#include "PID.h"
+#include "PidController.h"
 
 // for convenience
 using nlohmann::json;
