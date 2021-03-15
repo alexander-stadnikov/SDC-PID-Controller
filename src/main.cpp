@@ -5,6 +5,7 @@
 #include "json.hpp"
 
 #include "PidController.h"
+#include "Throttle.h"
 #include "Helpers.h"
 
 int main()
