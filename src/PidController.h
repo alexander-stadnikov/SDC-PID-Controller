@@ -39,12 +39,19 @@ namespace sdc
             double p;
             double i;
             double d;
+            double prevCte;
+
+            void Update(double) noexcept;
+        };
+
+        struct Tau
+        {
+            double p;
+            double i;
+            double d;
         };
 
         Error m_error;
-        double m_p;
-        double m_i;
-        double m_d;
-        double m_prevCte;
+        Tau m_tau;
     };
 }
