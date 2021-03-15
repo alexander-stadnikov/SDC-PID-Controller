@@ -40,7 +40,7 @@ int main()
                     // j[1] is the data JSON object
                     double cte = std::stod(j[1]["cte"].get<std::string>());
                     double speed = std::stod(j[1]["speed"].get<std::string>());
-                    double angle = std::stod(j[1]["steering_angle"].get<std::string>());
+                    // double angle = std::stod(j[1]["steering_angle"].get<std::string>());
 
                     pid.UpdateError(cte);
                     throttle.Update(cte, speed);
@@ -67,12 +67,12 @@ int main()
         } // end websocket message if
     });   // end h.onMessage
 
-    h.onConnection([&h](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
+    h.onConnection([&](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
         std::cout << "Connected!!!" << std::endl;
     });
 
-    h.onDisconnection([&h](uWS::WebSocket<uWS::SERVER> ws, int code,
-                           char *message, size_t length) {
+    h.onDisconnection([&](uWS::WebSocket<uWS::SERVER> ws, int code,
+                          char *message, size_t length) {
         ws.close();
         std::cout << "Disconnected" << std::endl;
     });
