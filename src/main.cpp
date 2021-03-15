@@ -6,6 +6,7 @@
 
 #include "PidController.h"
 #include "Throttle.h"
+#include "Twiddler.h"
 #include "Helpers.h"
 
 int main()
@@ -22,8 +23,10 @@ int main()
     throttle.SetMinCteThreshold(0.3);
     throttle.SetStabilizationSpeed(30.0);
 
-    h.onMessage([&pid, &throttle](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
-                                  uWS::OpCode opCode) {
+    sdc::Twiddler twiddler;
+
+    h.onMessage([&pid, &throttle, &twiddler](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length,
+                                             uWS::OpCode opCode) {
         // "42" at the start of the message means there's a websocket message event.
         // The 4 signifies a websocket message
         // The 2 signifies a websocket event
@@ -47,6 +50,14 @@ int main()
                     pid.UpdateError(cte);
                     throttle.Update(cte, speed);
                     double steer_value = pid.GetSteering();
+                    twiddler.Update();
+
+                    if (twiddler.IsEpochDone())
+                    {
+                        std::string reset_msg = "42[\"reset\",{}]";
+                        ws.send(reset_msg.data(), reset_msg.length(), uWS::OpCode::TEXT);
+                        return;
+                    }
 
                     // DEBUG
                     std::cout << "CTE: " << cte << " Steering Value: " << steer_value

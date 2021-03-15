@@ -10,6 +10,7 @@ set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 set(sources
     src/PidController.cpp
     src/Throttle.cpp
+    src/Twiddler.cpp
     src/main.cpp
 )
 
