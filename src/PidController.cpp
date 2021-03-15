@@ -27,6 +27,11 @@ namespace sdc
         return m_error.TotalError();
     }
 
+    PidController::Tau PidController::GetTau() const noexcept
+    {
+        return m_tau;
+    }
+
     void PidController::Error::Update(double cte) noexcept
     {
         p = cte;

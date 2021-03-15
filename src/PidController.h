@@ -29,10 +29,19 @@ namespace sdc
     class PidController final
     {
     public:
+        struct Tau
+        {
+            double p;
+            double i;
+            double d;
+        };
+
+    public:
         void Init(double p, double i, double d) noexcept;
         void UpdateError(double cte) noexcept;
         double Steering() const noexcept;
         double TotalError() const noexcept;
+        Tau GetTau() const noexcept;
 
     private:
         struct Error
@@ -46,13 +55,6 @@ namespace sdc
 
             void Update(double) noexcept;
             double TotalError() const noexcept;
-        };
-
-        struct Tau
-        {
-            double p;
-            double i;
-            double d;
         };
 
         Error m_error;
