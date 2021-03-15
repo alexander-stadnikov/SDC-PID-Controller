@@ -15,14 +15,14 @@ namespace sdc
         m_error.Update(cte);
     }
 
-    double PidController::Steering() const noexcept
+    double PidController::GetSteering() const noexcept
     {
         return -m_tau.p * m_error.p -
                m_tau.i * m_error.i -
                m_tau.d * m_error.d;
     }
 
-    double PidController::TotalError() const noexcept
+    double PidController::GetTotalError() const noexcept
     {
         return m_error.TotalError();
     }
@@ -82,7 +82,7 @@ namespace sdc
         m_stabilizationSpeed = v;
     }
 
-    double Throttle::Value() const noexcept
+    double Throttle::GetValue() const noexcept
     {
         return m_throttle;
     }

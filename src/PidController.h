@@ -14,7 +14,7 @@ namespace sdc
         void SetStabilizationSpeed(double) noexcept;
 
         void Update(double cte, double speed) noexcept;
-        double Value() const noexcept;
+        double GetValue() const noexcept;
 
     private:
         bool m_slowDown = false;
@@ -39,8 +39,8 @@ namespace sdc
     public:
         void Init(double p, double i, double d) noexcept;
         void UpdateError(double cte) noexcept;
-        double Steering() const noexcept;
-        double TotalError() const noexcept;
+        double GetSteering() const noexcept;
+        double GetTotalError() const noexcept;
         Tau GetTau() const noexcept;
 
     private:

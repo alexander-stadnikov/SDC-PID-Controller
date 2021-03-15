@@ -12,6 +12,7 @@ int main()
     uWS::Hub h;
 
     sdc::PidController pid;
+    pid.Init(0.0, 0.0, 0.0);
 
     sdc::Throttle throttle;
     throttle.SetMaxThrottle(1.0);
@@ -44,7 +45,7 @@ int main()
 
                     pid.UpdateError(cte);
                     throttle.Update(cte, speed);
-                    double steer_value = pid.TotalError();
+                    double steer_value = pid.GetSteering();
 
                     // DEBUG
                     std::cout << "CTE: " << cte << " Steering Value: " << steer_value
@@ -52,7 +53,7 @@ int main()
 
                     nlohmann::json msgJson;
                     msgJson["steering_angle"] = steer_value;
-                    msgJson["throttle"] = throttle.Value();
+                    msgJson["throttle"] = throttle.GetValue();
                     auto msg = "42[\"steer\"," + msgJson.dump() + "]";
                     std::cout << msg << std::endl;
                     ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
