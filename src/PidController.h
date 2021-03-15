@@ -31,7 +31,7 @@ namespace sdc
     public:
         void Init(double p, double i, double d) noexcept;
         void UpdateError(double cte) noexcept;
-        double TotalError() const noexcept;
+        double Steering() const noexcept;
 
     private:
         struct Error

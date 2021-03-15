@@ -21,7 +21,7 @@ namespace sdc
         m_prevCte = cte;
     }
 
-    double PidController::TotalError() const noexcept
+    double PidController::Steering() const noexcept
     {
         return -m_p * m_error.p - m_i * m_error.i * m_i - m_d * m_error.d;
     }
