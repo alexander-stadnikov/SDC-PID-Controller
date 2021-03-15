@@ -6,7 +6,7 @@ namespace sdc
 {
     void PidController::Init(double p, double i, double d) noexcept
     {
-        m_error = Error{0, 0, 0, 0};
+        m_error = Error{0, 0, 0, 0, 0, 0};
         m_tau = Tau{p, i, d};
     }
 
@@ -22,12 +22,24 @@ namespace sdc
                m_tau.d * m_error.d;
     }
 
+    double PidController::TotalError() const noexcept
+    {
+        return m_error.TotalError();
+    }
+
     void PidController::Error::Update(double cte) noexcept
     {
         p = cte;
         i += cte;
         d = cte - prevCte;
         prevCte = cte;
+        total += cte * cte;
+        n++;
+    }
+
+    double PidController::Error::TotalError() const noexcept
+    {
+        return total / n;
     }
 
     Throttle::Throttle() noexcept

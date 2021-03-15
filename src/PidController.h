@@ -32,6 +32,7 @@ namespace sdc
         void Init(double p, double i, double d) noexcept;
         void UpdateError(double cte) noexcept;
         double Steering() const noexcept;
+        double TotalError() const noexcept;
 
     private:
         struct Error
@@ -40,8 +41,11 @@ namespace sdc
             double i;
             double d;
             double prevCte;
+            double total;
+            double n;
 
             void Update(double) noexcept;
+            double TotalError() const noexcept;
         };
 
         struct Tau
