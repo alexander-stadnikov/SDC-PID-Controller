@@ -1,14 +1,35 @@
 #pragma once
 
+#include "PidController.h"
+
+#include <vector>
+
 namespace sdc
 {
     class Twiddler
     {
     public:
-        void Update() noexcept;
-        bool IsEpochDone() const noexcept;
+        explicit Twiddler(const PidController::Tau &tau, double tolerance) noexcept;
+
+        void Update(double err) noexcept;
+        PidController::Tau GetTau() const noexcept;
+        double GetBestError() const noexcept;
+        double GetSumOfIncrements() const noexcept;
 
     private:
-        int test{500};
+        enum class State
+        {
+            Increment,
+            Check,
+            Decrement,
+            Done
+        };
+
+        State m_state;
+        std::vector<double> m_tau;
+        std::vector<double> m_dTau;
+        const double m_tolerance;
+        int m_param;
+        double m_bestErr;
     };
 }
