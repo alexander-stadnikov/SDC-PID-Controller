@@ -2,10 +2,10 @@
 
 namespace sdc
 {
-    void PidController::Init(double p, double i, double d) noexcept
+    void PidController::Init(const Tau &tau) noexcept
     {
         m_error = Error{0, 0, 0, 0, 0, 0};
-        m_tau = Tau{p, i, d};
+        m_tau = tau;
     }
 
     void PidController::UpdateError(double cte) noexcept

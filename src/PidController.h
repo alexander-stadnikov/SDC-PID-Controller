@@ -13,7 +13,7 @@ namespace sdc
         };
 
     public:
-        void Init(double p, double i, double d) noexcept;
+        void Init(const Tau &) noexcept;
         void UpdateError(double cte) noexcept;
         double GetSteering() const noexcept;
         double GetTotalError() const noexcept;
