@@ -29,7 +29,7 @@ namespace sdc
         std::vector<double> m_tau;
         std::vector<double> m_dTau;
         const double m_tolerance;
-        int m_param;
+        size_t m_param;
         double m_bestErr;
     };
 }
