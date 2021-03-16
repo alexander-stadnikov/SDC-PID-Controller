@@ -4,7 +4,7 @@ namespace sdc
 {
     void PidController::Init(const Tau &tau) noexcept
     {
-        m_error = Error{0, 0, 0, 0, 0, 0};
+        m_error = Error{0, 0, 0, 0, 0, 0, 0};
         m_tau = tau;
     }
 
@@ -30,18 +30,27 @@ namespace sdc
         return m_tau;
     }
 
+    void PidController::SetTotalErrorNormalizer(int norm) noexcept
+    {
+        m_error.normalizer = norm;
+    }
+
     void PidController::Error::Update(double cte) noexcept
     {
         p = cte;
         i += cte;
         d = cte - prevCte;
         prevCte = cte;
-        total += cte * cte;
+        if (n > normalizer)
+        {
+            total += cte * cte;
+        }
+
         n++;
     }
 
     double PidController::Error::TotalError() const noexcept
     {
-        return total / n;
+        return total / static_cast<double>(n);
     }
 }

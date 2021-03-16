@@ -18,6 +18,7 @@ namespace sdc
         double GetSteering() const noexcept;
         double GetTotalError() const noexcept;
         Tau GetTau() const noexcept;
+        void SetTotalErrorNormalizer(int) noexcept;
 
     private:
         struct Error
@@ -28,6 +29,7 @@ namespace sdc
             double prevCte;
             double total;
             double n;
+            int normalizer;
 
             void Update(double) noexcept;
             double TotalError() const noexcept;
