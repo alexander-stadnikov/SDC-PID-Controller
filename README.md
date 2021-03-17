@@ -16,7 +16,7 @@ This repository contains the implementation of the ["PID Controller"](https://en
 ---
 ## Project Overview
 
-The project contains two main components – the planning service and Udacity Simulator.
+The project contains two main components – the PID Controller service and Udacity Simulator.
 The service is a C++ application. It uses [uWebSockets](https://github.com/uWebSockets/uWebSockets) for network communications.
 The simulator sends the telemetry data as a JSON object to the planning service and gets the trajectory back.
 Data formats presented below are pseudo-JSON, comments, and values only for explanation.
