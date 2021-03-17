@@ -1,6 +1,6 @@
 # PID Controller
 
-This repository contains the implementation of the ["PID Controller"]() Project for Udacity Course Self-Driving Car Engineer.
+This repository contains the implementation of the ["PID Controller"](https://en.wikipedia.org/wiki/PID_controller) Project for Udacity Course Self-Driving Car Engineer.
 
 [**Full video**](https://www.youtube.com/watch?v=e9iFyyR1AEc)
 
@@ -31,7 +31,7 @@ sudo chmod u+x {simulator_file_name}
 
 **Simulator data format**:
 
-```json
+```
 {
 	"cte": 0.0, // The cross-track error
 	"speed": 0.0, // The car's speed
@@ -41,7 +41,7 @@ sudo chmod u+x {simulator_file_name}
 
 **PID Controller data format**:
 
-```json
+```
 {
   "steering_angle": 0.0, // The steering angle
   "throttle": 0.0 // The throttle
